@@ -1,0 +1,30 @@
+<div class="m-header d-flex align-items-center justify-content-between px-3">
+
+  <!-- LOGO -->
+  <a (click)="returnToHome()" class="b-brand d-flex align-items-center">
+    <img src="assets/logo1.png" alt="logo" class="nav-logo me-2" />
+    <h2 class="text-dark mt-2">DMS</h2>
+  </a>
+
+  <!-- RIGHT SIDE -->
+  <div class="d-flex align-items-center gap-3">
+
+    <!-- MENU TOGGLE -->
+    <a
+      href="javascript:"
+      class="pc-head-link head-link-secondary mobile-menu"
+      [ngClass]="{ on: navCollapsed }"
+      (click)="navCollapse()"
+      title="Toggle Menu"
+    >
+      <i class="ti ti-menu-2"></i>
+    </a>
+
+    <!-- USER PROFILE -->
+    <div class="profile-box d-flex align-items-center">
+      <i class="ti ti-user"></i>
+    </div>
+
+  </div>
+
+</div>

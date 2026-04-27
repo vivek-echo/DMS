@@ -1,0 +1,59 @@
+// This file is intentionally left empty to allow customers to add custom CSS if needed.
+/* HEADER */
+.m-header {
+    height: 60px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* LOGO */
+.nav-logo {
+    width: 120px;
+    height: 50px;
+    object-fit: contain;
+    border-radius: 10px;
+
+
+    padding: 4px;
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.brand-text {
+    color: #fff;
+    font-weight: 600;
+    font-size: 18px;
+    letter-spacing: 1px;
+}
+
+/* MENU ICON */
+.mobile-menu i {
+    font-size: 22px;
+    color: #fff;
+}
+
+.mobile-menu:hover {
+    transform: scale(1.1);
+    transition: 0.2s ease;
+}
+
+/* PROFILE ICON */
+.profile-box {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.15);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.profile-box i {
+    color: #fff;
+    font-size: 18px;
+}
+
+.profile-box:hover {
+    background: rgba(255, 255, 255, 0.25);
+}
