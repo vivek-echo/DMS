@@ -1,0 +1,207 @@
+<div class="row g-4">
+  <div class="col-12">
+    <div class="card border-0 shadow-sm progress-card overflow-hidden">
+      <div class="card-body p-4 p-lg-5">
+        <div class="d-flex flex-column flex-xl-row align-items-xl-center justify-content-between gap-4">
+          <div>
+            <span class="badge section-badge mb-3">
+              <i class="fa-solid fa-graduation-cap me-2"></i>Course Player
+            </span>
+
+            <div class="d-flex flex-wrap align-items-center gap-3 mb-2">
+              <h3 class="mb-0">{{ course.title }}</h3>
+              <span class="current-pill">
+                <i class="fa-solid fa-circle-play me-2"></i>{{ selectedLesson?.label }} in progress
+              </span>
+            </div>
+
+            <p class="text-muted mb-3">{{ course.description }}</p>
+
+            <div class="d-flex flex-wrap gap-3 meta-strip">
+              <span><i class="fa-regular fa-user me-2"></i>{{ course.instructor }}</span>
+              <span><i class="fa-regular fa-circle-check me-2"></i>{{ completedLessons }}/{{ totalLessons }} lessons completed</span>
+              <span><i class="fa-regular fa-clock me-2"></i>{{ selectedLesson?.duration }} current lesson</span>
+            </div>
+          </div>
+
+          <a routerLink="/application/courses" class="btn btn-outline-primary">
+            <i class="fa-solid fa-arrow-left me-2"></i>Browse Courses
+          </a>
+        </div>
+
+        <div class="mt-4">
+          <div class="d-flex align-items-center justify-content-between mb-2">
+            <span class="fw-semibold">Course Progress</span>
+            <span class="fw-semibold text-primary">{{ course.progress }}%</span>
+          </div>
+
+          <div
+            class="progress progress-track"
+            role="progressbar"
+            aria-label="Course progress"
+            [attr.aria-valuenow]="course.progress"
+            aria-valuemin="0"
+            aria-valuemax="100"
+          >
+            <div class="progress-bar progress-fill" [style.width.%]="course.progress"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-12 col-xl-8">
+    <div class="card border-0 shadow-sm player-card overflow-hidden">
+      <div class="ratio ratio-16x9 player-stage">
+        <div class="player-overlay">
+          <span class="lesson-badge">{{ selectedLesson?.label }}</span>
+
+          <div class="play-button">
+            <i class="fa-solid fa-play"></i>
+          </div>
+
+          <div class="player-copy">
+            <h4 class="mb-2">{{ selectedLesson?.title }}</h4>
+            <p class="mb-0">Continue learning with focused lesson playback and a distraction-free content area.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-body p-4 p-lg-5">
+        <div class="d-flex flex-column flex-lg-row align-items-lg-start justify-content-between gap-3">
+          <div>
+            <h4 class="mb-2">{{ course.title }}</h4>
+            <p class="instructor-name mb-2">
+              <i class="fa-regular fa-user me-2"></i>{{ course.instructor }}
+            </p>
+            <p class="text-muted mb-0">{{ course.description }}</p>
+          </div>
+
+          <div class="lesson-summary">
+            <span class="summary-label">Now Learning</span>
+            <strong class="d-block mb-2">{{ selectedLesson?.title }}</strong>
+            <span class="duration-chip">
+              <i class="fa-regular fa-clock me-2"></i>{{ selectedLesson?.duration }}
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card border-0 shadow-sm details-card mt-4">
+      <div class="card-body p-4 p-lg-5">
+        <div class="nav nav-pills course-tabs mb-4">
+          <button
+            *ngFor="let tab of tabs"
+            type="button"
+            class="nav-link"
+            [class.active]="activeTab === tab.id"
+            (click)="setActiveTab(tab.id)"
+          >
+            <i [class]="tab.icon + ' me-2'"></i>{{ tab.label }}
+          </button>
+        </div>
+
+        <ng-container [ngSwitch]="activeTab">
+          <div *ngSwitchCase="'overview'" class="row g-3">
+            <div class="col-md-6" *ngFor="let item of overviewItems">
+              <div class="info-card h-100">
+                <div class="info-icon">
+                  <i [class]="item.icon"></i>
+                </div>
+                <div>
+                  <h6 class="mb-1">{{ item.title }}</h6>
+                  <p class="text-muted mb-0">{{ item.text }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div *ngSwitchCase="'notes'" class="row g-3">
+            <div class="col-12" *ngFor="let note of notes">
+              <div class="content-card">
+                <div class="d-flex flex-column flex-sm-row align-items-sm-center justify-content-between gap-2 mb-2">
+                  <h6 class="mb-0">{{ note.title }}</h6>
+                  <span class="time-chip">{{ note.time }}</span>
+                </div>
+                <p class="text-muted mb-0">{{ note.text }}</p>
+              </div>
+            </div>
+          </div>
+
+          <div *ngSwitchCase="'qa'" class="row g-3">
+            <div class="col-12" *ngFor="let item of questions">
+              <div class="content-card">
+                <div class="question-label mb-2">
+                  <i class="fa-regular fa-circle-question me-2"></i>{{ item.student }} asked
+                </div>
+                <h6 class="mb-2">{{ item.question }}</h6>
+                <p class="text-muted mb-0">{{ item.answer }}</p>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-12 col-xl-4">
+    <div class="card border-0 shadow-sm syllabus-card h-100">
+      <div class="card-body p-4">
+        <div class="d-flex align-items-start justify-content-between gap-3 mb-4">
+          <div>
+            <span class="text-uppercase small text-muted d-block mb-1">Course Content</span>
+            <h5 class="mb-1">Modules & Lessons</h5>
+            <p class="text-muted mb-0">{{ totalLessons }} lessons across {{ modules.length }} modules</p>
+          </div>
+
+          <span class="badge progress-pill">{{ course.progress }}% done</span>
+        </div>
+
+        <div class="module-list">
+          <div class="module-card" *ngFor="let module of modules">
+            <button
+              type="button"
+              class="module-toggle"
+              [attr.aria-expanded]="module.expanded"
+              (click)="toggleModule(module.id)"
+            >
+              <div>
+                <strong class="d-block">{{ module.title }}</strong>
+                <span class="module-count">{{ module.lessons.length }} lessons</span>
+              </div>
+              <i class="fa-solid" [class.fa-chevron-up]="module.expanded" [class.fa-chevron-down]="!module.expanded"></i>
+            </button>
+
+            <div class="lesson-list" *ngIf="module.expanded">
+              <button
+                type="button"
+                class="lesson-item"
+                *ngFor="let lesson of module.lessons"
+                [class.active]="selectedLessonId === lesson.id"
+                (click)="selectLesson(lesson.id)"
+              >
+                <span
+                  class="status-icon"
+                  [class.completed]="lesson.completed"
+                  [class.current]="selectedLessonId === lesson.id"
+                >
+                  <i *ngIf="lesson.completed" class="fa-solid fa-check"></i>
+                  <i *ngIf="!lesson.completed && selectedLessonId === lesson.id" class="fa-solid fa-play"></i>
+                  <i *ngIf="!lesson.completed && selectedLessonId !== lesson.id" class="fa-regular fa-circle"></i>
+                </span>
+
+                <span class="lesson-copy">
+                  <strong>{{ lesson.label }}</strong>
+                  <span>{{ lesson.title }}</span>
+                </span>
+
+                <span class="lesson-duration">{{ lesson.duration }}</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

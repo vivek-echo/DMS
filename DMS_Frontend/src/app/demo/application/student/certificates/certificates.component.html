@@ -1,0 +1,163 @@
+<div class="certificates-page">
+  <div class="card border-0 certificates-hero overflow-hidden">
+    <div class="card-body p-4 p-xl-5">
+      <div class="row align-items-center g-4">
+        <div class="col-xl-7">
+          <span class="hero-badge">
+            <i class="fa-solid fa-award me-2"></i>Certificate Vault
+          </span>
+          <h2 class="hero-title mt-3 mb-2">Showcase every milestone your learners have earned.</h2>
+          <p class="hero-copy mb-0">
+            This demo-ready certificate center makes the platform feel polished with downloadable achievements, verified
+            credential IDs, and a premium certificate preview.
+          </p>
+        </div>
+
+        <div class="col-xl-5">
+          <div class="hero-summary">
+            <div class="summary-item">
+              <span class="summary-label">Certificates Earned</span>
+              <strong>{{ certificates.length }}</strong>
+            </div>
+            <div class="summary-item">
+              <span class="summary-label">Learning Hours</span>
+              <strong>{{ totalLearningHours }} hrs</strong>
+            </div>
+            <div class="summary-item">
+              <span class="summary-label">Latest Awarded</span>
+              <strong>{{ certificates[0].date }}</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  @if (demoMessage) {
+    <div class="alert alert-success border-0 shadow-sm mb-0" role="alert">
+      <i class="fa-solid fa-circle-check me-2"></i>{{ demoMessage }}
+    </div>
+  }
+
+  <div class="row g-4">
+    <div class="col-xl-5">
+      <div class="card border-0 shadow-sm h-100">
+        <div class="card-body p-4">
+          <div class="d-flex justify-content-between align-items-center gap-3 mb-4">
+            <div>
+              <h4 class="section-title mb-1">Earned Certificates</h4>
+              <p class="section-copy mb-0">Select any certificate to open a high-impact preview.</p>
+            </div>
+
+            <a routerLink="/application/courses" class="btn btn-outline-primary btn-sm">
+              <i class="fa-solid fa-book-open me-2"></i>Browse Courses
+            </a>
+          </div>
+
+          <div class="certificate-list">
+            @for (certificate of certificates; track certificate.id) {
+              <div
+                class="certificate-item text-start"
+                [class.active]="selectedCertificate.id === certificate.id"
+                tabindex="0"
+                (click)="selectCertificate(certificate)"
+                (keydown.enter)="selectCertificate(certificate)"
+              >
+                <div class="d-flex align-items-start justify-content-between gap-3">
+                  <div>
+                    <span class="certificate-chip">{{ certificate.grade }}</span>
+                    <h5 class="certificate-title mb-2 mt-3">{{ certificate.courseName }}</h5>
+                    <p class="certificate-meta mb-1">
+                      <i class="fa-solid fa-user-graduate me-2"></i>{{ certificate.studentName }}
+                    </p>
+                    <p class="certificate-meta mb-0">
+                      <i class="fa-regular fa-calendar me-2"></i>{{ certificate.date }}
+                    </p>
+                  </div>
+
+                  <i class="fa-solid fa-chevron-right item-arrow"></i>
+                </div>
+
+                <div class="certificate-footer">
+                  <span>Credential ID: {{ certificate.credentialId }}</span>
+                  <button type="button" class="btn btn-primary btn-sm" (click)="downloadCertificate(certificate); $event.stopPropagation()">
+                    <i class="fa-solid fa-download me-2"></i>Download Certificate
+                  </button>
+                </div>
+              </div>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-xl-7">
+      <div class="card border-0 shadow-sm h-100">
+        <div class="card-body p-4 p-xl-5">
+          <div class="d-flex justify-content-between align-items-center gap-3 mb-4">
+            <div>
+              <h4 class="section-title mb-1">Certificate Preview</h4>
+              <p class="section-copy mb-0">A styled sample preview for client demos and walkthroughs.</p>
+            </div>
+
+            <span class="preview-badge">
+              <i class="fa-solid fa-shield-halved me-2"></i>Verified
+            </span>
+          </div>
+
+          <div class="certificate-preview">
+            <div class="certificate-watermark">DMS</div>
+            <span class="preview-type">Certificate of Completion</span>
+            <h2 class="preview-title">Achievement Award</h2>
+            <p class="preview-text">This is proudly presented to</p>
+            <h3 class="preview-student">{{ selectedCertificate.studentName }}</h3>
+            <p class="preview-text">for successfully completing</p>
+            <h4 class="preview-course">{{ selectedCertificate.courseName }}</h4>
+
+            <div class="preview-grid">
+              <div>
+                <span class="preview-label">Issued On</span>
+                <strong>{{ selectedCertificate.date }}</strong>
+              </div>
+              <div>
+                <span class="preview-label">Instructor</span>
+                <strong>{{ selectedCertificate.instructor }}</strong>
+              </div>
+              <div>
+                <span class="preview-label">Credential ID</span>
+                <strong>{{ selectedCertificate.credentialId }}</strong>
+              </div>
+              <div>
+                <span class="preview-label">Result</span>
+                <strong>{{ selectedCertificate.grade }}</strong>
+              </div>
+            </div>
+
+            <div class="signature-row">
+              <div class="signature-block">
+                <span class="signature-line"></span>
+                <small>Academic Director</small>
+              </div>
+              <div class="seal">
+                <i class="fa-solid fa-award"></i>
+              </div>
+              <div class="signature-block">
+                <span class="signature-line"></span>
+                <small>Program Mentor</small>
+              </div>
+            </div>
+          </div>
+
+          <div class="d-flex flex-wrap gap-3 mt-4">
+            <button type="button" class="btn btn-primary" (click)="downloadCertificate(selectedCertificate)">
+              <i class="fa-solid fa-download me-2"></i>Download Certificate
+            </button>
+            <a routerLink="/application/profile" class="btn btn-light">
+              <i class="fa-regular fa-user me-2"></i>View Student Profile
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,68 @@
+<div class="categories-page">
+  <div class="card border-0 categories-hero overflow-hidden">
+    <div class="card-body p-4 p-xl-5">
+      <div class="row align-items-center g-4">
+        <div class="col-xl-8">
+          <span class="hero-badge">
+            <i class="fa-solid fa-layer-group me-2"></i>Course Categories
+          </span>
+          <h2 class="hero-title mt-3 mb-2">Organize the course catalog into polished learning verticals.</h2>
+          <p class="hero-copy mb-0">
+            Each category card looks production-ready and routes into the course listing experience with a simulated
+            category filter.
+          </p>
+        </div>
+
+        <div class="col-xl-4">
+          <div class="hero-panel">
+            <span class="hero-panel__label">Featured Tracks</span>
+            <strong class="hero-panel__value">{{ categories.length }}</strong>
+            <span class="hero-panel__copy">Curated for student demo walkthroughs</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row g-4">
+    @for (category of categories; track category.name) {
+      <div class="col-md-6 col-xl-4">
+        <a
+          class="card border-0 shadow-sm h-100 category-card text-decoration-none"
+          [routerLink]="['/application/courses']"
+          [queryParams]="{ category: category.name }"
+          [style.--category-accent]="category.accent"
+          [style.--category-accent-soft]="category.softAccent"
+        >
+          <div class="card-body p-4">
+            <div class="d-flex align-items-start justify-content-between gap-3 mb-4">
+              <div class="category-icon">
+                <i [class]="category.icon"></i>
+              </div>
+              <span class="category-badge">{{ category.nextCohort }}</span>
+            </div>
+
+            <h4 class="category-title mb-2">{{ category.name }}</h4>
+            <p class="category-copy mb-4">{{ category.description }}</p>
+
+            <div class="category-stats">
+              <div>
+                <span>Courses</span>
+                <strong>{{ category.courseCount }}</strong>
+              </div>
+              <div>
+                <span>Learners</span>
+                <strong>{{ category.learnerCount }}</strong>
+              </div>
+            </div>
+
+            <div class="category-footer mt-4">
+              <span>Browse course listing</span>
+              <i class="fa-solid fa-arrow-right"></i>
+            </div>
+          </div>
+        </a>
+      </div>
+    }
+  </div>
+</div>

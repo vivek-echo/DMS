@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 // project import
 import { SharedModule } from 'src/app/theme/shared/shared.module';
@@ -39,9 +40,41 @@ interface DashboardTask {
   softAccent: string;
 }
 
+interface DashboardRecommendation {
+  id: number;
+  name: string;
+  category: string;
+  rating: number;
+  price: number;
+  learners: string;
+  accent: string;
+  softAccent: string;
+  bannerImage: string;
+}
+
+interface DashboardRecentlyViewed {
+  id: number;
+  name: string;
+  category: string;
+  lastOpened: string;
+  progress: number;
+  accent: string;
+  softAccent: string;
+}
+
+interface DashboardQuickAction {
+  title: string;
+  description: string;
+  route: string;
+  cta: string;
+  icon: string;
+  accent: string;
+  softAccent: string;
+}
+
 @Component({
   selector: 'app-dashboard',
-  imports: [SharedModule],
+  imports: [SharedModule, RouterLink],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss'
 })
@@ -52,7 +85,7 @@ export class DashboardComponent {
     {
       label: 'Enrolled Courses',
       value: 5,
-      note: 'Across development, design and CAD tracks',
+      note: 'Across development, design and career-oriented tracks',
       icon: 'fa-solid fa-book-open-reader',
       accent: '#2563eb',
       softAccent: 'rgba(37, 99, 235, 0.12)'
@@ -60,7 +93,7 @@ export class DashboardComponent {
     {
       label: 'Completed Courses',
       value: 2,
-      note: 'Two programs finished successfully',
+      note: 'Two programs finished successfully this quarter',
       icon: 'fa-solid fa-circle-check',
       accent: '#059669',
       softAccent: 'rgba(5, 150, 105, 0.12)'
@@ -68,15 +101,15 @@ export class DashboardComponent {
     {
       label: 'Pending Courses',
       value: 3,
-      note: 'Ready to resume from your last lesson',
+      note: 'Ready to resume from your last lesson checkpoint',
       icon: 'fa-solid fa-hourglass-half',
       accent: '#f59e0b',
       softAccent: 'rgba(245, 158, 11, 0.14)'
     },
     {
       label: 'Certificates Earned',
-      value: 2,
-      note: 'Latest certificate downloaded this week',
+      value: 3,
+      note: 'Latest certificate added to your learner profile',
       icon: 'fa-solid fa-award',
       accent: '#8b5cf6',
       softAccent: 'rgba(139, 92, 246, 0.12)'
@@ -116,6 +149,42 @@ export class DashboardComponent {
     }
   ];
 
+  readonly recommendedCourses: DashboardRecommendation[] = [
+    {
+      id: 1,
+      name: 'Mobile App UI Masterclass',
+      category: 'Mobile App',
+      rating: 4.8,
+      price: 2199,
+      learners: '1.9k learners',
+      accent: '#7c3aed',
+      softAccent: 'rgba(124, 58, 237, 0.12)',
+      bannerImage: this.createBanner('Mobile App UI', 'Figma / Prototyping / UX Flows', '#7c3aed', '#1d4ed8')
+    },
+    {
+      id: 2,
+      name: 'Finance Fundamentals for Startups',
+      category: 'Finance',
+      rating: 4.6,
+      price: 1499,
+      learners: '1.2k learners',
+      accent: '#f59e0b',
+      softAccent: 'rgba(245, 158, 11, 0.14)',
+      bannerImage: this.createBanner('Finance Basics', 'Budgets / Forecasts / Metrics', '#f59e0b', '#ea580c')
+    },
+    {
+      id: 3,
+      name: 'Software Testing Essentials',
+      category: 'Software',
+      rating: 4.9,
+      price: 1899,
+      learners: '2.7k learners',
+      accent: '#2563eb',
+      softAccent: 'rgba(37, 99, 235, 0.12)',
+      bannerImage: this.createBanner('Testing Essentials', 'QA / Automation / Reliability', '#2563eb', '#0f172a')
+    }
+  ];
+
   readonly recentActivities: DashboardActivity[] = [
     {
       text: 'Completed lesson 3 in Web Development',
@@ -135,6 +204,66 @@ export class DashboardComponent {
       text: 'Downloaded certificate',
       time: '2 days ago',
       icon: 'fa-solid fa-download',
+      accent: '#8b5cf6',
+      softAccent: 'rgba(139, 92, 246, 0.12)'
+    }
+  ];
+
+  readonly recentlyViewed: DashboardRecentlyViewed[] = [
+    {
+      id: 1,
+      name: 'Mobile App UI Masterclass',
+      category: 'Mobile App',
+      lastOpened: 'Opened 30 minutes ago',
+      progress: 18,
+      accent: '#7c3aed',
+      softAccent: 'rgba(124, 58, 237, 0.12)'
+    },
+    {
+      id: 2,
+      name: 'Finance Fundamentals for Startups',
+      category: 'Finance',
+      lastOpened: 'Opened yesterday',
+      progress: 54,
+      accent: '#f59e0b',
+      softAccent: 'rgba(245, 158, 11, 0.14)'
+    },
+    {
+      id: 3,
+      name: 'Graphic Design Mastery',
+      category: 'Graphic Design',
+      lastOpened: 'Opened 2 days ago',
+      progress: 30,
+      accent: '#ec4899',
+      softAccent: 'rgba(236, 72, 153, 0.14)'
+    }
+  ];
+
+  readonly quickActions: DashboardQuickAction[] = [
+    {
+      title: 'Continue Learning',
+      description: 'Jump back into your current lesson and maintain your study streak.',
+      route: '/application/course-player',
+      cta: 'Resume course',
+      icon: 'fa-solid fa-play',
+      accent: '#2563eb',
+      softAccent: 'rgba(37, 99, 235, 0.12)'
+    },
+    {
+      title: 'Browse Jobs',
+      description: 'Explore internships and job roles matched to your completed skills.',
+      route: '/application/jobs',
+      cta: 'View opportunities',
+      icon: 'fa-solid fa-briefcase',
+      accent: '#f59e0b',
+      softAccent: 'rgba(245, 158, 11, 0.14)'
+    },
+    {
+      title: 'Open Certificates',
+      description: 'Access your latest achievements and download ready-to-share credentials.',
+      route: '/application/certificates',
+      cta: 'View certificates',
+      icon: 'fa-solid fa-award',
       accent: '#8b5cf6',
       softAccent: 'rgba(139, 92, 246, 0.12)'
     }

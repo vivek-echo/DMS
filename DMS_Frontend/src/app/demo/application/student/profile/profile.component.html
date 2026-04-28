@@ -1,0 +1,145 @@
+<div class="profile-page">
+  <div class="row g-4">
+    <div class="col-xl-4">
+      <div class="card border-0 shadow-sm profile-summary h-100">
+        <div class="card-body p-4 p-xl-5">
+          <div class="text-center">
+            <img [src]="profileImage" [alt]="currentName" class="profile-image" />
+            <span class="profile-status mt-4">Available for internships</span>
+            <h3 class="mt-3 mb-1">{{ currentName }}</h3>
+            <p class="profile-role mb-1">{{ currentRole }}</p>
+            <p class="profile-email mb-4">{{ currentEmail }}</p>
+          </div>
+
+          <div class="profile-stats">
+            <div>
+              <strong>05</strong>
+              <span>Active Courses</span>
+            </div>
+            <div>
+              <strong>03</strong>
+              <span>Certificates</span>
+            </div>
+            <div>
+              <strong>07</strong>
+              <span>Job Applications</span>
+            </div>
+          </div>
+
+          <div class="info-card mt-4">
+            <h5 class="mb-3">About the learner</h5>
+            <p class="mb-0">{{ profileForm.get('about')?.value }}</p>
+          </div>
+
+          <div class="info-card mt-4">
+            <div class="d-flex align-items-center justify-content-between gap-3 mb-3">
+              <h5 class="mb-0">Top Skills</h5>
+              <span class="skills-count">{{ skillTags.length }} skills</span>
+            </div>
+
+            <div class="skill-list">
+              @for (skill of skillTags; track skill) {
+                <span class="skill-chip">{{ skill }}</span>
+              }
+            </div>
+          </div>
+
+          <div class="contact-list mt-4">
+            <div>
+              <span>Phone</span>
+              <strong>{{ profileForm.get('phone')?.value }}</strong>
+            </div>
+            <div>
+              <span>Location</span>
+              <strong>{{ profileForm.get('location')?.value }}</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-xl-8">
+      <div class="card border-0 shadow-sm h-100">
+        <div class="card-body p-4 p-xl-5">
+          <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-4">
+            <div>
+              <span class="form-badge">
+                <i class="fa-regular fa-pen-to-square me-2"></i>Editable Demo Form
+              </span>
+              <h2 class="form-title mt-3 mb-2">Student Profile</h2>
+              <p class="form-copy mb-0">
+                The form updates the profile preview immediately, while staying fully frontend-only for demo walkthroughs.
+              </p>
+            </div>
+          </div>
+
+          @if (demoMessage) {
+            <div class="alert alert-info border-0 demo-alert" role="alert">
+              <i class="fa-solid fa-circle-info me-2"></i>{{ demoMessage }}
+            </div>
+          }
+
+          <form [formGroup]="profileForm" (ngSubmit)="saveProfile()">
+            <div class="row g-4">
+              <div class="col-md-6">
+                <label for="profileName" class="form-label fw-semibold">Full Name</label>
+                <input id="profileName" type="text" class="form-control form-control-lg" formControlName="name" />
+              </div>
+
+              <div class="col-md-6">
+                <label for="profileEmail" class="form-label fw-semibold">Email</label>
+                <input id="profileEmail" type="email" class="form-control form-control-lg" formControlName="email" />
+              </div>
+
+              <div class="col-md-6">
+                <label for="profileRole" class="form-label fw-semibold">Role / Headline</label>
+                <input id="profileRole" type="text" class="form-control form-control-lg" formControlName="role" />
+              </div>
+
+              <div class="col-md-6">
+                <label for="profilePhone" class="form-label fw-semibold">Phone</label>
+                <input id="profilePhone" type="text" class="form-control form-control-lg" formControlName="phone" />
+              </div>
+
+              <div class="col-12">
+                <label for="profileLocation" class="form-label fw-semibold">Location</label>
+                <input id="profileLocation" type="text" class="form-control form-control-lg" formControlName="location" />
+              </div>
+
+              <div class="col-12">
+                <label for="profileSkills" class="form-label fw-semibold">Skills</label>
+                <input
+                  id="profileSkills"
+                  type="text"
+                  class="form-control form-control-lg"
+                  formControlName="skills"
+                  placeholder="Separate skills with commas"
+                />
+              </div>
+
+              <div class="col-12">
+                <label for="profileAbout" class="form-label fw-semibold">About</label>
+                <textarea
+                  id="profileAbout"
+                  rows="6"
+                  class="form-control form-control-lg"
+                  formControlName="about"
+                  placeholder="Write a short learner profile"
+                ></textarea>
+              </div>
+            </div>
+
+            <div class="d-flex flex-wrap gap-3 mt-4">
+              <button type="submit" class="btn btn-primary px-4">
+                <i class="fa-solid fa-floppy-disk me-2"></i>Save Changes
+              </button>
+              <button type="button" class="btn btn-light px-4" (click)="resetProfile()">
+                <i class="fa-solid fa-rotate-left me-2"></i>Reset Demo Data
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -26,6 +26,36 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
+    path: 'course-player',
+    redirectTo: 'application/course-player',
+    pathMatch: 'full'
+  },
+  {
+    path: 'categories',
+    redirectTo: 'application/categories',
+    pathMatch: 'full'
+  },
+  {
+    path: 'certificates',
+    redirectTo: 'application/certificates',
+    pathMatch: 'full'
+  },
+  {
+    path: 'profile',
+    redirectTo: 'application/profile',
+    pathMatch: 'full'
+  },
+  {
+    path: 'notifications',
+    redirectTo: 'application/notifications',
+    pathMatch: 'full'
+  },
+  {
+    path: 'payment-history',
+    redirectTo: 'application/payment-history',
+    pathMatch: 'full'
+  },
+  {
     path: 'add-job',
     redirectTo: 'application/add-job',
     pathMatch: 'full'

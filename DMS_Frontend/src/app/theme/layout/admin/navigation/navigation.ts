@@ -48,12 +48,68 @@ export const NavigationItems: NavigationItem[] = [
         icon: 'ti ti-book-upload'
       },
       {
+        id: 'course-categories',
+        title: 'Categories',
+        type: 'item',
+        classes: 'nav-item',
+        url: '/application/categories',
+        icon: 'ti ti-layout-grid'
+      },
+      {
         id: 'courses',
         title: 'View Courses',
         type: 'item',
         classes: 'nav-item',
         url: '/application/courses',
         icon: 'ti ti-list-details'
+      },
+      {
+        id: 'course-player',
+        title: 'Course Player',
+        type: 'item',
+        classes: 'nav-item',
+        url: '/application/course-player',
+        icon: 'ti ti-player-play'
+      }
+    ]
+  },
+  {
+    id: 'learner-services',
+    title: 'Learner Services',
+    type: 'group',
+    icon: 'icon-navigation',
+    children: [
+      {
+        id: 'profile',
+        title: 'Profile',
+        type: 'item',
+        classes: 'nav-item',
+        url: '/application/profile',
+        icon: 'ti ti-user-circle'
+      },
+      {
+        id: 'certificates',
+        title: 'Certificates',
+        type: 'item',
+        classes: 'nav-item',
+        url: '/application/certificates',
+        icon: 'ti ti-certificate'
+      },
+      {
+        id: 'notifications',
+        title: 'Notifications',
+        type: 'item',
+        classes: 'nav-item',
+        url: '/application/notifications',
+        icon: 'ti ti-bell'
+      },
+      {
+        id: 'payment-history',
+        title: 'Payment History',
+        type: 'item',
+        classes: 'nav-item',
+        url: '/application/payment-history',
+        icon: 'ti ti-credit-card'
       }
     ]
   },

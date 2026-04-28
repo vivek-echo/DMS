@@ -28,8 +28,32 @@ const routes: Routes = [
         loadComponent: () => import('./course/add-course/add-course.component').then((c) => c.AddCourseComponent)
       },
       {
+        path: 'categories',
+        loadComponent: () => import('./course/categories/categories.component').then((c) => c.CategoriesComponent)
+      },
+      {
         path: 'courses',
         loadComponent: () => import('./course/view-course/view-course.component').then((c) => c.ViewCourseComponent)
+      },
+      {
+        path: 'course-player',
+        loadComponent: () => import('./course/course-player/course-player.component').then((c) => c.CoursePlayerComponent)
+      },
+      {
+        path: 'certificates',
+        loadComponent: () => import('./student/certificates/certificates.component').then((c) => c.CertificatesComponent)
+      },
+      {
+        path: 'profile',
+        loadComponent: () => import('./student/profile/profile.component').then((c) => c.ProfileComponent)
+      },
+      {
+        path: 'notifications',
+        loadComponent: () => import('./student/notifications/notifications.component').then((c) => c.NotificationsComponent)
+      },
+      {
+        path: 'payment-history',
+        loadComponent: () => import('./student/payment-history/payment-history.component').then((c) => c.PaymentHistoryComponent)
       },
       {
         path: 'add-job',

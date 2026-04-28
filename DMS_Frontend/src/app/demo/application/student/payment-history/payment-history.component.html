@@ -1,0 +1,111 @@
+<div class="payment-page">
+  <div class="card border-0 payment-hero overflow-hidden">
+    <div class="card-body p-4 p-xl-5">
+      <div class="row align-items-center g-4">
+        <div class="col-xl-8">
+          <span class="hero-badge">
+            <i class="fa-solid fa-wallet me-2"></i>Payment History
+          </span>
+          <h2 class="hero-title mt-3 mb-2">A clear, trustworthy transaction view for every learner payment.</h2>
+          <p class="hero-copy mb-0">
+            This page gives the platform a production-ready billing layer with realistic transaction records, payment
+            status badges, and statement-ready UI.
+          </p>
+        </div>
+
+        <div class="col-xl-4">
+          <a routerLink="/application/courses" class="btn btn-light btn-lg w-100">
+            <i class="fa-solid fa-book-open me-2"></i>Purchase More Courses
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row g-4">
+    <div class="col-md-4">
+      <div class="card border-0 shadow-sm stat-card h-100">
+        <div class="card-body p-4">
+          <span class="stat-label">Total Paid</span>
+          <h3 class="stat-value">{{ totalPaid | currency: 'INR' : 'symbol' : '1.0-0' }}</h3>
+          <p class="stat-copy mb-0">Completed course purchases across your learning history.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card border-0 shadow-sm stat-card h-100">
+        <div class="card-body p-4">
+          <span class="stat-label">Pending Payments</span>
+          <h3 class="stat-value">{{ pendingAmount | currency: 'INR' : 'symbol' : '1.0-0' }}</h3>
+          <p class="stat-copy mb-0">Transactions awaiting confirmation or bank settlement.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card border-0 shadow-sm stat-card h-100">
+        <div class="card-body p-4">
+          <span class="stat-label">Successful Orders</span>
+          <h3 class="stat-value">{{ successfulPayments }}</h3>
+          <p class="stat-copy mb-0">Fully completed transactions with invoice-level tracking.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card border-0 shadow-sm">
+    <div class="card-body p-4 p-xl-5">
+      <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-4">
+        <div>
+          <h4 class="section-title mb-1">Transaction Table</h4>
+          <p class="section-copy mb-0">Frontend-only data with realistic invoices, payment methods, and statuses.</p>
+        </div>
+
+        <button type="button" class="btn btn-outline-primary">
+          <i class="fa-solid fa-file-arrow-down me-2"></i>Download Statement
+        </button>
+      </div>
+
+      <div class="table-responsive">
+        <table class="table align-middle payment-table mb-0">
+          <thead>
+            <tr>
+              <th>Invoice</th>
+              <th>Course Name</th>
+              <th>Amount</th>
+              <th>Date</th>
+              <th>Method</th>
+              <th>Status</th>
+              <th>Transaction ID</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (payment of payments; track payment.invoice) {
+              <tr>
+                <td class="fw-semibold">{{ payment.invoice }}</td>
+                <td>
+                  <div class="course-cell">
+                    <span class="course-icon">
+                      <i class="fa-solid fa-graduation-cap"></i>
+                    </span>
+                    <span>{{ payment.courseName }}</span>
+                  </div>
+                </td>
+                <td class="fw-semibold">{{ payment.amount | currency: 'INR' : 'symbol' : '1.0-0' }}</td>
+                <td>{{ payment.date }}</td>
+                <td>{{ payment.method }}</td>
+                <td>
+                  <span class="status-pill" [class.success]="payment.status === 'Success'" [class.pending]="payment.status === 'Pending'">
+                    {{ payment.status }}
+                  </span>
+                </td>
+                <td class="text-muted">{{ payment.transactionId }}</td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

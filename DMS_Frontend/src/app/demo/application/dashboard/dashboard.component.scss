@@ -51,6 +51,13 @@
   font-weight: 600;
 }
 
+.hero-actions .btn {
+  border-radius: 0.95rem;
+  font-weight: 700;
+  padding-top: 0.8rem;
+  padding-bottom: 0.8rem;
+}
+
 .hero-panel {
   height: 100%;
   padding: 1.5rem;
@@ -154,6 +161,12 @@
   color: #64748b;
 }
 
+.section-link {
+  border-radius: 999px;
+  color: #0f172a;
+  font-weight: 600;
+}
+
 .section-pill {
   display: inline-flex;
   align-items: center;
@@ -173,9 +186,23 @@
     box-shadow 0.25s ease;
 }
 
+.recommendation-card {
+  overflow: hidden;
+  border-radius: 1.15rem;
+  background: linear-gradient(180deg, #fff 0%, #f8fafc 100%);
+  box-shadow: inset 0 0 0 1px rgba(226, 232, 240, 0.9);
+}
+
 .course-banner {
   width: 100%;
   height: 190px;
+  object-fit: cover;
+  display: block;
+}
+
+.recommendation-banner {
+  width: 100%;
+  height: 160px;
   object-fit: cover;
   display: block;
 }
@@ -196,6 +223,26 @@
   color: var(--course-accent);
   font-size: 0.88rem;
   font-weight: 700;
+}
+
+.recommendation-rating,
+.viewed-tag,
+.viewed-progress {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.recommendation-rating {
+  color: #f59e0b;
+}
+
+.recommendation-price {
+  color: #0f172a;
+  font-size: 1.05rem;
 }
 
 .course-title {
@@ -238,6 +285,8 @@
   transform: translateY(-1px);
 }
 
+.quick-actions,
+.viewed-list,
 .activity-list,
 .task-list {
   display: flex;
@@ -245,12 +294,95 @@
   gap: 1rem;
 }
 
+.quick-action {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1.1rem;
+  border: 1px solid rgba(148, 163, 184, 0.16);
+  border-radius: 1rem;
+  background: linear-gradient(180deg, #fff 0%, #f8fafc 100%);
+  color: inherit;
+  text-decoration: none;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.quick-action:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 20px 38px rgba(15, 23, 42, 0.08);
+}
+
+.quick-action__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 1rem;
+  background: var(--action-accent-soft);
+  color: var(--action-accent);
+  font-size: 1.1rem;
+}
+
+.quick-action__content h6,
+.viewed-title {
+  color: #0f172a;
+  font-weight: 700;
+}
+
+.quick-action__content p,
+.viewed-copy {
+  color: #64748b;
+}
+
+.quick-action__content span {
+  color: var(--action-accent);
+  font-weight: 700;
+}
+
+.viewed-item,
 .activity-item,
 .task-item {
   padding: 1rem 1.1rem;
   border: 1px solid rgba(148, 163, 184, 0.18);
   border-radius: 1rem;
   background: #fff;
+}
+
+.viewed-item {
+  box-shadow: inset 0 0 0 1px rgba(226, 232, 240, 0.6);
+}
+
+.viewed-tag {
+  padding: 0.35rem 0.7rem;
+  background: var(--viewed-accent-soft);
+  color: var(--viewed-accent);
+}
+
+.viewed-progress {
+  min-width: 3.6rem;
+  padding: 0.4rem 0.75rem;
+  background: var(--viewed-accent-soft);
+  color: var(--viewed-accent);
+}
+
+.viewed-item .progress {
+  background: var(--viewed-accent-soft);
+}
+
+.viewed-item .progress-bar {
+  background: var(--viewed-accent);
+}
+
+.viewed-link {
+  display: inline-flex;
+  align-items: center;
+  margin-top: 1rem;
+  color: var(--viewed-accent);
+  font-weight: 700;
+  text-decoration: none;
 }
 
 .activity-icon {
@@ -304,12 +436,17 @@
   .dashboard-hero,
   .stat-card,
   .section-card,
-  .course-card {
+  .course-card,
+  .recommendation-card {
     border-radius: 1rem;
   }
 
   .hero-panel {
     padding: 1.25rem;
+  }
+
+  .hero-actions .btn {
+    width: 100%;
   }
 
   .task-item {
