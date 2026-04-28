@@ -23,105 +23,69 @@ export const NavigationItems: NavigationItem[] = [
     icon: 'icon-navigation',
     children: [
       {
-        id: 'default',
+        id: 'student-dashboard',
         title: 'Dashboard',
         type: 'item',
         classes: 'nav-item',
-        url: '/default',
+        url: '/application/dashboard',
         icon: 'ti ti-dashboard',
         breadcrumbs: false
       }
     ]
   },
   {
-    id: 'page',
-    title: 'Pages',
+    id: 'course-management',
+    title: 'Courses',
     type: 'group',
     icon: 'icon-navigation',
     children: [
       {
-        id: 'Authentication',
-        title: 'Authentication',
-        type: 'collapse',
-        icon: 'ti ti-key',
-        children: [
-          {
-            id: 'login',
-            title: 'Login',
-            type: 'item',
-            url: '/login',
-            target: true,
-            breadcrumbs: false
-          },
-          {
-            id: 'register',
-            title: 'Register',
-            type: 'item',
-            url: '/register',
-            target: true,
-            breadcrumbs: false
-          }
-        ]
+        id: 'create-course',
+        title: 'Add Course',
+        type: 'item',
+        classes: 'nav-item',
+        url: '/application/create-course',
+        icon: 'ti ti-book-upload'
+      },
+      {
+        id: 'courses',
+        title: 'View Courses',
+        type: 'item',
+        classes: 'nav-item',
+        url: '/application/courses',
+        icon: 'ti ti-list-details'
       }
     ]
   },
   {
-    id: 'elements',
-    title: 'Elements',
+    id: 'job-management',
+    title: 'Jobs & Internships',
     type: 'group',
     icon: 'icon-navigation',
     children: [
       {
-        id: 'typography',
-        title: 'Typography',
+        id: 'add-job',
+        title: 'Add Job',
         type: 'item',
         classes: 'nav-item',
-        url: '/typography',
-        icon: 'ti ti-typography'
+        url: '/application/add-job',
+        icon: 'ti ti-briefcase'
       },
       {
-        id: 'color',
-        title: 'Colors',
+        id: 'jobs',
+        title: 'View Jobs',
         type: 'item',
         classes: 'nav-item',
-        url: '/color',
-        icon: 'ti ti-brush'
+        url: '/application/jobs',
+        icon: 'ti ti-list-details'
       },
       {
-        id: 'tabler',
-        title: 'Tabler',
+        id: 'applied-jobs',
+        title: 'Applied Jobs',
         type: 'item',
         classes: 'nav-item',
-        url: 'https://tabler-icons.io/',
-        icon: 'ti ti-plant-2',
-        target: true,
-        external: true
-      }
-    ]
-  },
-  {
-    id: 'other',
-    title: 'Other',
-    type: 'group',
-    icon: 'icon-navigation',
-    children: [
-      {
-        id: 'sample-page',
-        title: 'Sample Page',
-        type: 'item',
-        url: '/sample-page',
-        classes: 'nav-item',
-        icon: 'ti ti-brand-chrome'
-      },
-      {
-        id: 'document',
-        title: 'Document',
-        type: 'item',
-        classes: 'nav-item',
-        url: 'https://codedthemes.gitbook.io/berry-angular/',
-        icon: 'ti ti-vocabulary',
-        target: true,
-        external: true
+        url: '/application/applied-jobs',
+        icon: 'ti ti-user-check'
       }
     ]
   }

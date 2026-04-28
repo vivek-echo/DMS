@@ -1,0 +1,226 @@
+<div class="row g-4">
+  <div class="col-12">
+    <div class="card border-0 shadow-sm page-intro overflow-hidden">
+      <div class="card-body p-4 p-lg-5 d-flex flex-column flex-lg-row align-items-lg-center justify-content-between gap-3">
+        <div>
+          <span class="badge intro-badge mb-3">
+            <i class="ti ti-briefcase me-2"></i>Career Opportunities
+          </span>
+          <h3 class="mb-2">Add Job / Internship</h3>
+          <p class="text-muted mb-0">
+            Create a polished opportunity listing with validation and a live preview using static demo data only.
+          </p>
+        </div>
+
+        <a routerLink="/application/jobs" class="btn btn-outline-primary">
+          <i class="ti ti-list-details me-2"></i>View Openings
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-xl-8">
+    <div class="card border-0 shadow-sm job-form-card h-100">
+      <div class="card-body p-4 p-lg-5">
+        <div class="d-flex align-items-center gap-3 mb-4">
+          <div class="section-icon">
+            <i class="ti ti-file-plus"></i>
+          </div>
+          <div>
+            <h4 class="mb-1">Opportunity Details</h4>
+            <p class="text-muted mb-0">Fill out the fields below to prepare a job or internship post for demo presentation.</p>
+          </div>
+        </div>
+
+        <form [formGroup]="jobForm" (ngSubmit)="onSubmit()" novalidate>
+          <div class="row g-4">
+            <div class="col-md-6">
+              <label for="title" class="form-label fw-semibold">Title <span class="text-danger">*</span></label>
+              <div class="position-relative">
+                <span class="field-icon"><i class="ti ti-briefcase"></i></span>
+                <input
+                  id="title"
+                  type="text"
+                  class="form-control form-control-lg ps-5"
+                  placeholder="Enter opening title"
+                  formControlName="title"
+                  [class.is-invalid]="isInvalid('title')"
+                />
+              </div>
+              <div class="invalid-feedback d-block" *ngIf="isInvalid('title')">Job title is required.</div>
+            </div>
+
+            <div class="col-md-6">
+              <label for="type" class="form-label fw-semibold">Type <span class="text-danger">*</span></label>
+              <div class="position-relative">
+                <span class="field-icon"><i class="ti ti-category"></i></span>
+                <select
+                  id="type"
+                  class="form-select form-select-lg ps-5"
+                  formControlName="type"
+                  [class.is-invalid]="isInvalid('type')"
+                >
+                  <option value="" disabled>Select opportunity type</option>
+                  <option *ngFor="let type of jobTypes" [value]="type">{{ type }}</option>
+                </select>
+              </div>
+              <div class="invalid-feedback d-block" *ngIf="isInvalid('type')">Please select a type.</div>
+            </div>
+
+            <div class="col-md-6">
+              <label for="companyName" class="form-label fw-semibold">Company Name <span class="text-danger">*</span></label>
+              <div class="position-relative">
+                <span class="field-icon"><i class="ti ti-building"></i></span>
+                <input
+                  id="companyName"
+                  type="text"
+                  class="form-control form-control-lg ps-5"
+                  placeholder="Enter company name"
+                  formControlName="companyName"
+                  [class.is-invalid]="isInvalid('companyName')"
+                />
+              </div>
+              <div class="invalid-feedback d-block" *ngIf="isInvalid('companyName')">Company name is required.</div>
+            </div>
+
+            <div class="col-md-6">
+              <label for="location" class="form-label fw-semibold">Location <span class="text-danger">*</span></label>
+              <div class="position-relative">
+                <span class="field-icon"><i class="ti ti-map-pin"></i></span>
+                <input
+                  id="location"
+                  type="text"
+                  class="form-control form-control-lg ps-5"
+                  placeholder="Enter location"
+                  formControlName="location"
+                  [class.is-invalid]="isInvalid('location')"
+                />
+              </div>
+              <div class="invalid-feedback d-block" *ngIf="isInvalid('location')">Location is required.</div>
+            </div>
+
+            <div class="col-md-6">
+              <label for="salary" class="form-label fw-semibold">Salary / Stipend <span class="text-danger">*</span></label>
+              <div class="position-relative">
+                <span class="field-icon"><i class="ti ti-currency-rupee"></i></span>
+                <input
+                  id="salary"
+                  type="text"
+                  class="form-control form-control-lg ps-5"
+                  placeholder="Enter salary or stipend"
+                  formControlName="salary"
+                  [class.is-invalid]="isInvalid('salary')"
+                />
+              </div>
+              <div class="invalid-feedback d-block" *ngIf="isInvalid('salary')">Salary or stipend is required.</div>
+            </div>
+
+            <div class="col-md-6">
+              <label for="skillsRequired" class="form-label fw-semibold">Skills Required <span class="text-danger">*</span></label>
+              <div class="position-relative">
+                <span class="field-icon"><i class="ti ti-sparkles"></i></span>
+                <input
+                  id="skillsRequired"
+                  type="text"
+                  class="form-control form-control-lg ps-5"
+                  placeholder="Angular, Bootstrap, Communication"
+                  formControlName="skillsRequired"
+                  [class.is-invalid]="isInvalid('skillsRequired')"
+                />
+              </div>
+              <div class="invalid-feedback d-block" *ngIf="isInvalid('skillsRequired')">Please enter required skills.</div>
+            </div>
+
+            <div class="col-12">
+              <label for="description" class="form-label fw-semibold">Description <span class="text-danger">*</span></label>
+              <textarea
+                id="description"
+                rows="5"
+                class="form-control form-control-lg"
+                placeholder="Describe the role, work mode, and ideal candidate profile"
+                formControlName="description"
+                [class.is-invalid]="isInvalid('description')"
+              ></textarea>
+              <div class="invalid-feedback d-block" *ngIf="isInvalid('description')">Description is required.</div>
+            </div>
+
+            <div class="col-12" *ngIf="demoMessage">
+              <div class="alert alert-success border-0 mb-0" role="alert">
+                <i class="ti ti-circle-check me-2"></i>{{ demoMessage }}
+              </div>
+            </div>
+
+            <div class="col-12 d-flex flex-wrap gap-3 pt-2">
+              <button type="submit" class="btn btn-primary px-4">
+                <i class="ti ti-send me-2"></i>Submit
+              </button>
+              <a routerLink="/application/jobs" class="btn btn-light px-4">Browse Listings</a>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-xl-4">
+    <div class="card border-0 shadow-sm job-summary-card h-100">
+      <div class="card-body p-4">
+        <div class="d-flex align-items-center gap-3 mb-4">
+          <div class="section-icon summary-icon">
+            <i class="ti ti-eye"></i>
+          </div>
+          <div>
+            <h5 class="mb-1">Live Preview</h5>
+            <p class="text-muted mb-0">A realistic summary of how this opening looks in demo mode.</p>
+          </div>
+        </div>
+
+        <div class="preview-panel mb-4">
+          <div class="d-flex align-items-center justify-content-between gap-3 mb-3">
+            <span [class]="selectedTypeClass">{{ jobForm.get('type')?.value || 'Select type' }}</span>
+            <span class="mini-chip">
+              <i class="ti ti-map-pin me-1"></i>{{ jobForm.get('location')?.value || 'Location pending' }}
+            </span>
+          </div>
+
+          <h5 class="mb-2">{{ jobForm.get('title')?.value || 'Opening title will appear here' }}</h5>
+          <p class="text-muted mb-3">{{ jobForm.get('companyName')?.value || 'Company name will appear here' }}</p>
+
+          <div class="salary-pill mb-3">
+            <i class="ti ti-currency-rupee me-2"></i>{{ jobForm.get('salary')?.value || 'Salary / stipend pending' }}
+          </div>
+
+          <div class="skill-list mb-3" *ngIf="skillPreview.length; else skillsPlaceholder">
+            <span class="skill-chip" *ngFor="let skill of skillPreview">{{ skill }}</span>
+          </div>
+
+          <ng-template #skillsPlaceholder>
+            <p class="text-muted small mb-3">Add comma-separated skills to preview them here.</p>
+          </ng-template>
+
+          <div class="description-preview">
+            {{
+              jobForm.get('description')?.value ||
+                'The role description, responsibilities, and candidate expectations will appear in this section.'
+            }}
+          </div>
+        </div>
+
+        <div class="summary-item">
+          <span class="summary-label">Company</span>
+          <strong>{{ jobForm.get('companyName')?.value || 'Waiting for employer name' }}</strong>
+        </div>
+
+        <div class="summary-item">
+          <span class="summary-label">Type</span>
+          <strong>{{ jobForm.get('type')?.value || 'Not selected yet' }}</strong>
+        </div>
+
+        <div class="summary-item border-0 pb-0 mb-0">
+          <span class="summary-label">Skills Count</span>
+          <strong>{{ skillPreview.length || 0 }} skills highlighted</strong>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,70 @@
+<div class="row g-4">
+  <div class="col-12">
+    <div class="card border-0 shadow-sm page-intro overflow-hidden">
+      <div class="card-body p-4 p-lg-5 d-flex flex-column flex-lg-row align-items-lg-center justify-content-between gap-3">
+        <div>
+          <span class="badge intro-badge mb-3">
+            <i class="ti ti-user-check me-2"></i>Student Applications
+          </span>
+          <h3 class="mb-2">Student Applied Jobs</h3>
+          <p class="text-muted mb-0">Track application progress with responsive status cards and a clean Bootstrap table layout.</p>
+        </div>
+
+        <a routerLink="/application/jobs" class="btn btn-outline-primary">
+          <i class="ti ti-briefcase me-2"></i>Browse Jobs
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-4" *ngFor="let summary of statusSummary">
+    <div class="card border-0 shadow-sm h-100 status-card" [ngClass]="summary.accentClass">
+      <div class="card-body p-4">
+        <div class="d-flex align-items-start justify-content-between gap-3">
+          <div>
+            <p class="status-label mb-2">{{ summary.label }}</p>
+            <h3 class="status-value mb-1">{{ getStatusCount(summary.label) }}</h3>
+            <p class="status-note mb-0">Student applications in this stage</p>
+          </div>
+          <div class="status-icon">
+            <i [class]="summary.icon"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-12">
+    <div class="card border-0 shadow-sm table-card">
+      <div class="card-body p-0">
+        <div class="table-responsive">
+          <table class="table align-middle mb-0 application-table">
+            <thead>
+              <tr>
+                <th>Job Title</th>
+                <th>Company</th>
+                <th>Status</th>
+                <th>Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let job of appliedJobs">
+                <td>
+                  <div class="job-title-wrap">
+                    <h6 class="mb-1">{{ job.title }}</h6>
+                    <span class="text-muted small">Application submitted through demo UI</span>
+                  </div>
+                </td>
+                <td>{{ job.company }}</td>
+                <td>
+                  <span [class]="getStatusBadgeClass(job.status)">{{ job.status }}</span>
+                </td>
+                <td>{{ job.date || '-' }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

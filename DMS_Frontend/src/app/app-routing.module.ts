@@ -7,18 +7,60 @@ import { HomeComponent } from './demo/admin-panel/home/home.component';
 const routes: Routes = [
   {
     path: '',
-    component: HomeComponent
+    component: HomeComponent,
+    pathMatch: 'full'
+  },
+  {
+    path: 'default',
+    redirectTo: 'application/dashboard',
+    pathMatch: 'full'
+  },
+  {
+    path: 'create-course',
+    redirectTo: 'application/create-course',
+    pathMatch: 'full'
+  },
+  {
+    path: 'courses',
+    redirectTo: 'application/courses',
+    pathMatch: 'full'
+  },
+  {
+    path: 'add-job',
+    redirectTo: 'application/add-job',
+    pathMatch: 'full'
+  },
+  {
+    path: 'jobs',
+    redirectTo: 'application/jobs',
+    pathMatch: 'full'
+  },
+  {
+    path: 'applied-jobs',
+    redirectTo: 'application/applied-jobs',
+    pathMatch: 'full'
+  },
+  {
+    path: 'typography',
+    redirectTo: 'application/typography',
+    pathMatch: 'full'
+  },
+  {
+    path: 'color',
+    redirectTo: 'application/color',
+    pathMatch: 'full'
+  },
+  {
+    path: 'sample-page',
+    redirectTo: 'application/sample-page',
+    pathMatch: 'full'
   },
   {
     path: 'application',
     component: AdminComponent,
     children: [
       {
-        path: 'default',
-        loadComponent: () => import('./demo/dashboard/default/default.component').then((c) => c.DefaultComponent)
-      },
-      {
-        path: 'application',
+        path: '',
         loadChildren: () => import('./demo/application/application.module').then((m) => m.ApplicationModule)
       },
       {

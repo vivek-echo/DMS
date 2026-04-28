@@ -1,124 +1,177 @@
-<div class="row">
-  <div class="col-xl-4 col-md-6">
-    <div class="card earning-card bg-secondary-dark text-white overflow-hidden">
-      <span class="round secondary-round small"></span>
-      <span class="round secondary-round big"></span>
-      <div class="card-body">
-        <div class="row">
-          <div class="col">
-            <div class="avatar avatar-lg">
-              <i class="text-white ti ti-credit-card f-24"></i>
+<div class="student-dashboard">
+  <div class="card dashboard-hero border-0 overflow-hidden">
+    <div class="card-body p-4 p-xl-5">
+      <div class="row align-items-center g-4">
+        <div class="col-xl-7">
+          <span class="dashboard-badge">Student Dashboard</span>
+          <h2 class="hero-title mt-3 mb-2">Welcome back, {{ learnerName }}.</h2>
+          <p class="hero-copy mb-4">
+            Keep your momentum going with your active courses, recent milestones, and the tasks lined up for the week.
+          </p>
+
+          <div class="d-flex flex-wrap gap-3">
+            <div class="hero-chip">
+              <i class="fa-solid fa-fire me-2"></i>
+              7 day learning streak
             </div>
-          </div>
-          <div class="col-auto">
-            <div class="btn-group" ngbDropdown>
-              <a type="button" class="avatar avatar-xs bg-secondary dropdown-toggle arrow-none" ngbDropdownToggle>
-                <i class="ti ti-dots"></i>
-              </a>
-              <ul class="dropdown-menu dropdown-menu-end" ngbDropdownMenu>
-                <li><button class="dropdown-item" type="button">Import Card</button></li>
-                <li><button class="dropdown-item" type="button">Export</button></li>
-              </ul>
+            <div class="hero-chip">
+              <i class="fa-solid fa-bullseye me-2"></i>
+              60% average course progress
             </div>
           </div>
         </div>
-        <span class="text-white d-block f-34 f-w-500 my-2">
-          $500.00
-          <i class="ti ti-circle-arrow-up-right opacity-50"></i>
-        </span>
-        <p class="mb-0 opacity-50">Total Earning</p>
-      </div>
-    </div>
-  </div>
-  <div class="col-xl-4 col-md-6">
-    <div class="card earning-card bg-primary-dark text-white overflow-hidden">
-      <span class="round primary-round small"></span>
-      <span class="round primary-round big"></span>
-      <div class="card-body">
-        <app-chart-data-month />
-      </div>
-    </div>
-  </div>
-  <div class="col-xl-4 col-md-12">
-    <div class="card total-income-card overflow-hidden bg-primary-dark text-white">
-      <div class="card-body">
-        <div class="d-flex align-items-center">
-          <div class="avatar avatar-lg icon m-r-5">
-            <i class="text-white ti ti-layout-board-split f-24"></i>
-          </div>
-          <div class="ms-2">
-            <h4 class="text-white f-w-600 mb-1">$203k</h4>
-            <p class="mb-0 opacity-50 text-sm">Total Income</p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="card total-income-card warning overflow-hidden">
-      <div class="card-body">
-        <div class="d-flex align-items-center">
-          <div class="avatar avatar-lg icon-warning m-r-5">
-            <i class="text-warning ti ti-layout-board-split f-24"></i>
-          </div>
-          <div class="ms-2">
-            <h4 class="f-w-600 mb-1">$203k</h4>
-            <p class="mb-0 opacity-50 text-sm">Total Income</p>
+
+        <div class="col-xl-5">
+          <div class="hero-panel">
+            <span class="hero-panel__label">Next milestone</span>
+            <h3 class="hero-panel__title">Earn your next certificate</h3>
+            <p class="hero-panel__copy mb-0">
+              Complete the remaining 40% of Web Development Bootcamp to unlock your next learner achievement.
+            </p>
           </div>
         </div>
       </div>
     </div>
   </div>
 
-  <div class="col-xl-8 col-md-12">
-    <app-bar-chart />
-  </div>
-  <div class="col-xl-4 col-md-12">
-    <div class="card">
-      <div class="card-body">
-        <div class="row mb-3 align-items-center">
-          <div class="col">
-            <h4>Popular Stocks</h4>
-          </div>
-          <div class="col-auto"></div>
-        </div>
-        <div class="rounded bg-light-secondary overflow-hidden mb-3">
-          <div class="px-3 pt-3">
-            <div class="row mb-1 align-items-start">
-              <div class="col">
-                <h5 class="text-secondary mb-0">Bajaj Finery</h5>
-                <small class="text-muted">10% Profit</small>
+  <div class="row g-4">
+    @for (stat of stats; track stat.label) {
+      <div class="col-xxl-3 col-sm-6">
+        <div
+          class="card stat-card border-0 h-100"
+          [style.--stat-accent]="stat.accent"
+          [style.--stat-accent-soft]="stat.softAccent"
+        >
+          <div class="card-body p-4">
+            <div class="d-flex align-items-start justify-content-between gap-3">
+              <div>
+                <p class="stat-label mb-2">{{ stat.label }}</p>
+                <h3 class="stat-value mb-2">{{ stat.value }}</h3>
+                <p class="stat-note mb-0">{{ stat.note }}</p>
               </div>
-              <div class="col-auto">
-                <h4 class="mb-0">$1839.00</h4>
+              <div class="stat-icon">
+                <i [class]="stat.icon"></i>
               </div>
             </div>
           </div>
-          <app-bajaj-chart />
         </div>
-        <ul class="list-group list-group-flush">
-          @for (list of ListGroup; track list) {
-            <li class="list-group-item px-0 {{ list.space }}">
-              <div class="row align-items-start">
-                <div class="col">
-                  <h5 class="mb-0">{{ list.name }}</h5>
-                  <small class="{{ list.color }}">{{ list.profit }}</small>
+      </div>
+    }
+  </div>
+
+  <div class="card section-card border-0">
+    <div class="card-body p-4 p-xl-5">
+      <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-4">
+        <div>
+          <h4 class="section-title mb-1">My Courses</h4>
+          <p class="section-subtitle mb-0">Pick up exactly where you left off across your enrolled programs.</p>
+        </div>
+
+        <span class="section-pill">{{ courses.length }} active courses</span>
+      </div>
+
+      <div class="row g-4">
+        @for (course of courses; track course.id) {
+          <div class="col-xl-4 col-md-6">
+            <div
+              class="card course-card border-0 h-100"
+              [style.--course-accent]="course.accent"
+              [style.--course-accent-soft]="course.softAccent"
+            >
+              <img [src]="course.bannerImage" [alt]="course.name + ' banner'" class="course-banner" />
+
+              <div class="card-body p-4 d-flex flex-column">
+                <div class="d-flex justify-content-between align-items-center gap-3 mb-3">
+                  <span class="course-meta">{{ course.lessonCount }} lessons</span>
+                  <span class="course-progress-value">{{ course.progress }}%</span>
                 </div>
-                <div class="col-auto">
-                  <h4 class="mb-0">
-                    {{ list.invest }}
-                    <span class="ms-2 align-top avatar avatar-xxs {{ list.bgColor }}">
-                      <i class="{{ list.icon }} {{ list.color }}"></i>
-                    </span>
-                  </h4>
+
+                <h5 class="course-title mb-2">{{ course.name }}</h5>
+                <p class="course-duration mb-4">{{ course.duration }} of guided content</p>
+
+                <div class="course-progress mb-4">
+                  <div class="d-flex justify-content-between align-items-center mb-2">
+                    <span class="course-progress-label">Progress</span>
+                    <span class="course-progress-label">{{ course.progress }}% complete</span>
+                  </div>
+                  <div class="progress">
+                    <div class="progress-bar" role="progressbar" [style.width.%]="course.progress"></div>
+                  </div>
+                </div>
+
+                <button type="button" class="btn course-action mt-auto">
+                  Continue Learning
+                  <i class="fa-solid fa-arrow-right ms-2"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+
+  <div class="row g-4">
+    <div class="col-xl-7">
+      <div class="card section-card border-0 h-100">
+        <div class="card-body p-4 p-xl-5">
+          <div class="d-flex justify-content-between align-items-center gap-3 mb-4">
+            <div>
+              <h4 class="section-title mb-1">Recent Activity</h4>
+              <p class="section-subtitle mb-0">A quick look at your latest learning updates.</p>
+            </div>
+          </div>
+
+          <div class="activity-list">
+            @for (activity of recentActivities; track activity.text) {
+              <div
+                class="activity-item d-flex align-items-start gap-3"
+                [style.--activity-accent]="activity.accent"
+                [style.--activity-accent-soft]="activity.softAccent"
+              >
+                <div class="activity-icon">
+                  <i [class]="activity.icon"></i>
+                </div>
+                <div class="flex-grow-1">
+                  <p class="activity-text mb-1">{{ activity.text }}</p>
+                  <span class="activity-time">{{ activity.time }}</span>
                 </div>
               </div>
-            </li>
-          }
-        </ul>
-        <div class="text-center">
-          <a href="javascript:" class="b-b-primary text-primary f-w-500">
-            View all
-            <i class="ti ti-chevron-right"></i>
-          </a>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-xl-5">
+      <div class="card section-card border-0 h-100">
+        <div class="card-body p-4 p-xl-5">
+          <div class="d-flex justify-content-between align-items-center gap-3 mb-4">
+            <div>
+              <h4 class="section-title mb-1">Upcoming Tasks</h4>
+              <p class="section-subtitle mb-0">Stay on track with the next actions in your queue.</p>
+            </div>
+          </div>
+
+          <div class="task-list">
+            @for (task of upcomingTasks; track task.title) {
+              <div
+                class="task-item d-flex align-items-center justify-content-between gap-3"
+                [style.--task-accent]="task.accent"
+                [style.--task-accent-soft]="task.softAccent"
+              >
+                <div class="d-flex align-items-start gap-3">
+                  <div class="task-dot"></div>
+                  <div>
+                    <h6 class="task-title mb-1">{{ task.title }}</h6>
+                    <p class="task-course mb-0">{{ task.course }}</p>
+                  </div>
+                </div>
+
+                <span class="task-timeline">{{ task.timeline }}</span>
+              </div>
+            }
+          </div>
         </div>
       </div>
     </div>

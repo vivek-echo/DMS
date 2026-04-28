@@ -55,7 +55,7 @@ export class LoginComponent {
       if (response.success === true) {
         localStorage.setItem('auth_token', response.data.token);
         localStorage.setItem('auth_user', JSON.stringify(response.data.user));
-        await this.router.navigate(['/application/default']);
+        await this.router.navigate(['/application/dashboard']);
       } else {
         this.errorMessage = response.message || 'Login failed';
       }

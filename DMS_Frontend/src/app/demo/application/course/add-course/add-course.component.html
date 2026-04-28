@@ -1,0 +1,198 @@
+<div class="row g-4">
+  <div class="col-12">
+    <div class="card border-0 shadow-sm page-intro overflow-hidden">
+      <div class="card-body p-4 p-lg-5 d-flex flex-column flex-lg-row align-items-lg-center justify-content-between gap-3">
+        <div>
+          <span class="badge intro-badge mb-3">
+            <i class="ti ti-book-upload me-2"></i>Course Management
+          </span>
+          <h3 class="mb-2">Create a new course</h3>
+          <p class="text-muted mb-0">Add a polished course profile with pricing and banner preview for demo use.</p>
+        </div>
+
+        <a routerLink="/application/courses" class="btn btn-outline-primary">
+          <i class="ti ti-list-details me-2"></i>View Courses
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-xl-8">
+    <div class="card border-0 shadow-sm course-form-card h-100">
+      <div class="card-body p-4 p-lg-5">
+        <div class="d-flex align-items-center gap-3 mb-4">
+          <div class="section-icon">
+            <i class="ti ti-school"></i>
+          </div>
+          <div>
+            <h4 class="mb-1">Add Course Component</h4>
+            <p class="text-muted mb-0">Fill in the required details and review the banner before submitting.</p>
+          </div>
+        </div>
+
+        <form [formGroup]="courseForm" (ngSubmit)="onSubmit()" novalidate>
+          <div class="row g-4">
+            <div class="col-md-6">
+              <label for="courseType" class="form-label fw-semibold">Course Type <span class="text-danger">*</span></label>
+              <div class="position-relative">
+                <span class="field-icon"><i class="ti ti-category"></i></span>
+                <select
+                  id="courseType"
+                  class="form-select form-select-lg ps-5"
+                  formControlName="courseType"
+                  [class.is-invalid]="isInvalid('courseType')"
+                >
+                  <option value="" disabled>Select course type</option>
+                  <option *ngFor="let type of courseTypes" [value]="type">{{ type }}</option>
+                </select>
+              </div>
+              <div class="invalid-feedback d-block" *ngIf="isInvalid('courseType')">Please select a course type.</div>
+            </div>
+
+            <div class="col-md-6">
+              <label for="coursePrice" class="form-label fw-semibold">Course Price <span class="text-danger">*</span></label>
+              <div class="position-relative">
+                <span class="field-icon"><i class="ti ti-currency-rupee"></i></span>
+                <input
+                  id="coursePrice"
+                  type="number"
+                  min="1"
+                  class="form-control form-control-lg ps-5"
+                  placeholder="Enter course price"
+                  formControlName="coursePrice"
+                  [class.is-invalid]="isInvalid('coursePrice')"
+                />
+              </div>
+              <div class="invalid-feedback d-block" *ngIf="isInvalid('coursePrice')">
+                Please enter a valid course price.
+              </div>
+            </div>
+
+            <div class="col-12">
+              <label for="courseName" class="form-label fw-semibold">Course Name <span class="text-danger">*</span></label>
+              <div class="position-relative">
+                <span class="field-icon"><i class="ti ti-book"></i></span>
+                <input
+                  id="courseName"
+                  type="text"
+                  class="form-control form-control-lg ps-5"
+                  placeholder="Enter course name"
+                  formControlName="courseName"
+                  [class.is-invalid]="isInvalid('courseName')"
+                />
+              </div>
+              <div class="invalid-feedback d-block" *ngIf="isInvalid('courseName')">Course name is required.</div>
+            </div>
+
+            <div class="col-12">
+              <label class="form-label fw-semibold">Course Banner <span class="text-danger">*</span></label>
+
+              <label class="upload-panel w-100" [class.is-invalid]="isInvalid('courseBanner')">
+                <input type="file" class="d-none" accept="image/*" (change)="onBannerSelected($event)" />
+                <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-3">
+                  <div class="d-flex align-items-start gap-3">
+                    <div class="upload-icon">
+                      <i class="ti ti-photo-scan"></i>
+                    </div>
+                    <div>
+                      <h6 class="mb-1">{{ bannerFileName || 'Choose a banner image' }}</h6>
+                      <p class="text-muted mb-0">Supported formats: JPG, PNG, WEBP. Click this panel to browse files.</p>
+                    </div>
+                  </div>
+
+                  <span class="btn btn-outline-primary upload-btn">
+                    <i class="ti ti-upload me-2"></i>Select Banner
+                  </span>
+                </div>
+              </label>
+
+              <div class="invalid-feedback d-block" *ngIf="isInvalid('courseBanner')">Please select a banner image.</div>
+            </div>
+
+            <div class="col-12" *ngIf="bannerPreview">
+              <div class="preview-card">
+                <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3">
+                  <div>
+                    <h6 class="mb-1">Banner Preview</h6>
+                    <p class="text-muted mb-0">A quick look at the selected course banner.</p>
+                  </div>
+                  <span class="badge text-bg-light">{{ bannerFileName }}</span>
+                </div>
+
+                <img [src]="bannerPreview" alt="Course banner preview" class="img-fluid preview-image" />
+              </div>
+            </div>
+
+            <div class="col-12" *ngIf="demoMessage">
+              <div class="alert alert-success border-0 mb-0" role="alert">
+                <i class="ti ti-circle-check me-2"></i>{{ demoMessage }}
+              </div>
+            </div>
+
+            <div class="col-12 d-flex flex-wrap gap-3 pt-2">
+              <button type="submit" class="btn btn-primary px-4">
+                <i class="ti ti-check me-2"></i>Submit
+              </button>
+              <a routerLink="/application/courses" class="btn btn-light px-4">Browse Course List</a>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-xl-4">
+    <div class="card border-0 shadow-sm course-summary-card h-100">
+      <div class="card-body p-4">
+        <div class="d-flex align-items-center gap-3 mb-4">
+          <div class="section-icon summary-icon">
+            <i class="ti ti-photo"></i>
+          </div>
+          <div>
+            <h5 class="mb-1">Live Summary</h5>
+            <p class="text-muted mb-0">Preview how the course details are shaping up.</p>
+          </div>
+        </div>
+
+        <div class="summary-preview mb-4">
+          <ng-container *ngIf="bannerPreview; else bannerPlaceholder">
+            <img [src]="bannerPreview" alt="Selected banner preview" class="img-fluid summary-image" />
+          </ng-container>
+
+          <ng-template #bannerPlaceholder>
+            <div class="summary-placeholder">
+              <i class="ti ti-photo-up"></i>
+              <span>Banner preview appears here</span>
+            </div>
+          </ng-template>
+        </div>
+
+        <div class="summary-item">
+          <span class="summary-label">Course Type</span>
+          <strong>{{ courseForm.get('courseType')?.value || 'Not selected yet' }}</strong>
+        </div>
+
+        <div class="summary-item">
+          <span class="summary-label">Course Name</span>
+          <strong>{{ courseForm.get('courseName')?.value || 'Waiting for course title' }}</strong>
+        </div>
+
+        <div class="summary-item">
+          <span class="summary-label">Course Price</span>
+          <strong>
+            {{
+              courseForm.get('coursePrice')?.value
+                ? (courseForm.get('coursePrice')?.value | currency: 'INR' : 'symbol' : '1.0-0')
+                : 'Set a course price'
+            }}
+          </strong>
+        </div>
+
+        <div class="summary-item border-0 pb-0 mb-0">
+          <span class="summary-label">Banner File</span>
+          <strong>{{ bannerFileName || 'No file selected' }}</strong>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

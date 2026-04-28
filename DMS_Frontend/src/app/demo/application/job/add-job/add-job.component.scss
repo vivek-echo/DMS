@@ -1,0 +1,160 @@
+.page-intro,
+.job-form-card,
+.job-summary-card {
+  border-radius: 1.25rem;
+}
+
+.page-intro {
+  background:
+    radial-gradient(circle at top right, rgba(13, 110, 253, 0.14), transparent 32%),
+    linear-gradient(135deg, #ffffff, #f7faff);
+}
+
+.intro-badge {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  padding: 0.55rem 0.9rem;
+  background: rgba(13, 110, 253, 0.1);
+  color: #0d6efd;
+  font-weight: 600;
+}
+
+.section-icon {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 1rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #0d6efd, #4f8dfd);
+  color: #fff;
+  font-size: 1.25rem;
+  flex-shrink: 0;
+}
+
+.summary-icon {
+  background: linear-gradient(135deg, #198754, #46b57d);
+}
+
+.field-icon {
+  position: absolute;
+  inset: 0 auto 0 1rem;
+  display: inline-flex;
+  align-items: center;
+  color: #6c757d;
+  z-index: 2;
+}
+
+.form-control,
+.form-select {
+  border-radius: 0.95rem;
+  border-color: #dfe5ef;
+  box-shadow: none;
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: rgba(13, 110, 253, 0.45);
+  box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.12);
+}
+
+.preview-panel {
+  border: 1px solid #edf1f7;
+  border-radius: 1rem;
+  padding: 1.25rem;
+  background:
+    linear-gradient(180deg, rgba(13, 110, 253, 0.04), rgba(13, 110, 253, 0)),
+    #fff;
+}
+
+.preview-badge,
+.mini-chip,
+.skill-chip,
+.salary-pill {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+}
+
+.preview-badge {
+  padding: 0.45rem 0.8rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+.job-badge {
+  background: rgba(13, 110, 253, 0.12);
+  color: #0d6efd;
+}
+
+.internship-badge {
+  background: rgba(25, 135, 84, 0.12);
+  color: #198754;
+}
+
+.neutral-badge {
+  background: #e9ecef;
+  color: #495057;
+}
+
+.mini-chip {
+  padding: 0.45rem 0.8rem;
+  background: #f1f5f9;
+  color: #495057;
+  font-size: 0.82rem;
+}
+
+.salary-pill {
+  padding: 0.65rem 0.95rem;
+  background: #f8f9fa;
+  color: #212529;
+  font-weight: 600;
+}
+
+.skill-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.skill-chip {
+  padding: 0.45rem 0.75rem;
+  background: rgba(13, 110, 253, 0.08);
+  color: #0d6efd;
+  font-size: 0.82rem;
+  font-weight: 500;
+}
+
+.description-preview {
+  border: 1px solid #edf1f7;
+  border-radius: 1rem;
+  padding: 1rem;
+  background: #fbfcfe;
+  color: #495057;
+  line-height: 1.6;
+}
+
+.summary-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid #edf1f7;
+}
+
+.summary-label {
+  color: #6c757d;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+@media (max-width: 767.98px) {
+  .page-intro .card-body,
+  .job-form-card .card-body,
+  .job-summary-card .card-body {
+    padding: 1.5rem;
+  }
+}

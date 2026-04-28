@@ -1,0 +1,125 @@
+.page-intro,
+.status-card,
+.table-card {
+  border-radius: 1.25rem;
+}
+
+.page-intro {
+  background:
+    radial-gradient(circle at top left, rgba(25, 135, 84, 0.14), transparent 32%),
+    linear-gradient(135deg, #ffffff, #f8fbf8);
+}
+
+.intro-badge {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  padding: 0.55rem 0.9rem;
+  background: rgba(25, 135, 84, 0.12);
+  color: #198754;
+  font-weight: 600;
+}
+
+.status-card {
+  background: #fff;
+}
+
+.status-card-applied {
+  border-top: 4px solid #6c757d;
+}
+
+.status-card-shortlisted {
+  border-top: 4px solid #198754;
+}
+
+.status-card-rejected {
+  border-top: 4px solid #dc3545;
+}
+
+.status-label {
+  color: #6c757d;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.status-value {
+  font-weight: 700;
+}
+
+.status-note {
+  color: #6c757d;
+}
+
+.status-icon {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 1rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #f8f9fa;
+  color: #495057;
+  font-size: 1.25rem;
+  flex-shrink: 0;
+}
+
+.table-card {
+  overflow: hidden;
+}
+
+.application-table thead th {
+  background: #f8fafc;
+  color: #6c757d;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  border-bottom: 1px solid #edf1f7;
+  padding: 1rem 1.5rem;
+  white-space: nowrap;
+}
+
+.application-table tbody td {
+  padding: 1.25rem 1.5rem;
+  border-color: #edf1f7;
+}
+
+.job-title-wrap h6 {
+  color: #212529;
+}
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.5rem 0.85rem;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+.applied-badge {
+  background: #e9ecef;
+  color: #495057;
+}
+
+.shortlisted-badge {
+  background: rgba(25, 135, 84, 0.12);
+  color: #198754;
+}
+
+.rejected-badge {
+  background: rgba(220, 53, 69, 0.12);
+  color: #dc3545;
+}
+
+@media (max-width: 767.98px) {
+  .page-intro .card-body {
+    padding: 1.5rem;
+  }
+
+  .application-table thead th,
+  .application-table tbody td {
+    padding: 1rem;
+  }
+}
